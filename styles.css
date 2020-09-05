@@ -55,16 +55,25 @@ canvas {
     top: 50%;
 }
 
-.btn {
-    border: white solid 1px;
+.deeper {
     position: relative;
     left: -50%;
     top: -50%;
     color: white;
+    padding: 0 50px;
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
 }
 
-.btn:hover {
-    background-color: rgba(4, 194, 201, 1);
+.deeper:hover {
+    animation: colorFade 1s forwards;
+    animation-timing-function: ease-out;
+}
+
+@keyframes colorFade {
+    from{background-color: rgba(4, 194, 201, 0);}
+    to{background-color: rgba(4, 194, 201, 0.3);}
 }
 
 
@@ -91,4 +100,21 @@ canvas {
 
 .info {
     position: relative;
+}
+
+.btn {
+    display: inline-block;
+}
+
+.deeper:hover > #arrow{
+    animation: arrowTurn 1s forwards;
+}
+
+#arrow {
+    margin-left: 5px;
+}
+
+@keyframes arrowTurn {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(90deg);}
 }
