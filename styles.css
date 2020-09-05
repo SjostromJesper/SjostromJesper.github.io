@@ -4,8 +4,11 @@ html, body, .animation-frame {
     height: 100%;
     width: 100%;
     cursor: default;
-    overflow-y: hidden;
+
+    overflow-x: hidden;
     font-family: 'Roboto', sans-serif;
+
+    scroll-behavior: smooth;
 }
 
 .animation-frame {
@@ -15,6 +18,11 @@ html, body, .animation-frame {
 canvas {
     position: relative;
 }
+
+.splash {
+    height: 100vh;
+}
+
 
 .nav {
     position: absolute;
@@ -30,6 +38,7 @@ canvas {
 .nav p {
     display: inline-block;
     margin-right: 8px;
+    color: rgba(255, 255, 255, 0.6);
 }
 
 @keyframes fadein {
@@ -50,9 +59,11 @@ canvas {
 }
 
 .container {
-    position: absolute;
-    left: 50%;
-    top: 50%;
+    display: inline-block;
+    position: relative;
+    bottom: 50vh;
+    left: 50vw;
+    z-index: 1;
 }
 
 .deeper {
@@ -81,7 +92,7 @@ canvas {
     animation-name: fap;
     animation-delay: 4s;
 
-    position: absolute;
+    position: relative;
     bottom: 300px;
     left: 200px;
     z-index: 1;
@@ -107,7 +118,7 @@ canvas {
 }
 
 .deeper:hover > #arrow{
-    animation: arrowTurn 1s forwards;
+    animation: arrowTurn .5s forwards;
 }
 
 #arrow {
@@ -118,3 +129,40 @@ canvas {
     from {transform: rotate(0deg);}
     to {transform: rotate(90deg);}
 }
+
+
+::-webkit-scrollbar {
+    width: 0;
+}
+
+#info {
+    display: grid;
+    place-items: center;
+    height: 100vh;
+}
+
+#skillbars {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+    background-color: rgba(26, 32, 47, 1);
+
+    height: 50vh;
+    width: 50vw;
+
+    border-radius: 15px;
+}
+
+.skillbar {
+    position: relative;
+    top: 10%;
+
+    width: 30px;
+    height: 70%;
+
+    background-color: rgba(175, 48, 186, 1);
+}
+
+
+

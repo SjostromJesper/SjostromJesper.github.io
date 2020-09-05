@@ -13,15 +13,10 @@ canvas.height = window.innerHeight;
 
 const c = canvas.getContext('2d');
 
-
-function draw(x, y) {
-    c.lineTo(x, y);
-}
-
 const animations = [fallingStars, empty];
 let currentAnimation = 0;
 
-const stars = [new Starfall(0, -100)];
+const stars = [];
 const offsetX = 100;
 const offsetY = 200;
 
@@ -36,8 +31,8 @@ function fallingStars() {
     stars.forEach((star, index) => {
         c.beginPath();
         c.strokeStyle = 'rgba(255, 255, 255, 0.1)';
-        draw(star.startX, star.startY);
-        draw(star.startX + offsetX, star.startY + offsetY);
+        c.lineTo(star.startX, star.startY);
+        c.lineTo(star.startX + offsetX, star.startY + offsetY);
 
         star.startX += star.speed * offsetX / 100;
         star.startY +=  star.speed * offsetY / 100;
@@ -80,9 +75,55 @@ addEventListener('keydown', event => {
     }
 });
 
-const btn = document.querySelector(".btn");
-btn.addEventListener( 'click', event => {
-    console.log("clicked!")
+window.addEventListener("scroll", event => {
+    console.log("scrolling");
+}, {passive: true});
+
+
+// GENERATE SKILLBARS
+
+class Skillbar {
+    constructor(skillName, percent, type) {
+        this.skillName = skillName;
+        this.percent = percent;
+        this.color = 'rgba(rgba(255, 255, 255, 1))';
+
+        if(type === 'db') {
+            this.color = 'blue'
+        }
+        else {
+            this.color = 'purple';
+        }
+    }
+}
+
+const skillbars = [
+    new Skillbar('java', '80'),
+    new Skillbar('C', '10'),
+    new Skillbar('Typescript', '65'),
+    new Skillbar('C++', '10'),
+    new Skillbar('HTML/CSS', '95')
+];
+
+const parent = document.getElementById('skillbars');
+
+
+skillbars.forEach(skill => {
+    let element = document.createElement('div');
+    let bar = document.createElement('div');
+
+    element.setAttribute("class", "skillbar");
+
+
+    bar.style.height = (100 - skill.percent) + '%';
+    bar.style.width = '100%';
+    bar.style.backgroundColor = 'rgba(255, 255, 255, 1)';
+
+    element.appendChild(bar);
+
+    parent.appendChild(element);
 });
+
+
 
 requestAnimationFrame(fallingStars);
