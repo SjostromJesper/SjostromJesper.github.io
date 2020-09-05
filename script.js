@@ -18,13 +18,20 @@ function draw(x, y) {
     c.lineTo(x, y);
 }
 
+const animations = [fallingStars, empty];
+let currentAnimation = 0;
+
 const stars = [new Starfall(0, -100)];
 const offsetX = 100;
 const offsetY = 200;
 
 const colors = ['red', 'green', 'yellow'];
 
-function line() {
+function empty() {
+    c.clearRect(0, 0, innerWidth, innerHeight);
+}
+
+function fallingStars() {
     c.clearRect(0, 0, innerWidth, innerHeight);
     stars.forEach((star, index) => {
         c.beginPath();
@@ -50,19 +57,32 @@ function line() {
 
 
     if(Math.random() * 200 < 5 && stars.length < 25) {
-        stars.push(new Starfall(-300 + (Math.random() * (innerWidth + 300)), -200, 1 + (Math.random() * 2), colors[Math.floor(Math.random() * colors.length)]));
+        stars.push(new Starfall(-300 + (Math.random() * (innerWidth + 300)), -200, .7 + (Math.random() * 2), colors[Math.floor(Math.random() * colors.length)]));
     }
 
-    requestAnimationFrame(line);
+    requestAnimationFrame(animations[currentAnimation]);
 }
 
-requestAnimationFrame(line);
+function startAnimation() {
+    requestAnimationFrame(animations[currentAnimation]);
+}
 
+addEventListener('keydown', event => {
+    if(event.key === " ") {
+        if(currentAnimation + 1 < animations.length) {
+            currentAnimation++;
+        }
+        else {
+            currentAnimation = 0;
+        }
 
+        startAnimation();
+    }
+});
 
-canvas.addEventListener('mousedown', e => {
-    console.log("stars: ", stars);
-})
+const btn = document.querySelector(".btn");
+btn.addEventListener( 'click', event => {
+    console.log("clicked!")
+});
 
-
-
+requestAnimationFrame(fallingStars);
