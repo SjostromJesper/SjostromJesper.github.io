@@ -1,0 +1,25 @@
+html, body, .animation-frame {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.animation-frame {
+    background-color: rgba(15, 14, 52, 1);
+}
+
+canvas {
+    position: absolute;
+}
+
+.title {
+    position: absolute;
+    z-index: 1;
+}
+
+.title h1 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 200;
+    color: rgba(255, 255, 255, 0.2);
+}
