@@ -83,46 +83,142 @@ window.addEventListener("scroll", event => {
 // GENERATE SKILLBARS
 
 class Skillbar {
-    constructor(skillName, percent, type) {
+    constructor(skillName, percent, color) {
         this.skillName = skillName;
         this.percent = percent;
-        this.color = 'rgba(rgba(255, 255, 255, 1))';
+        this.color = color;
 
-        if(type === 'db') {
-            this.color = 'blue'
-        }
-        else {
-            this.color = 'purple';
-        }
     }
 }
 
+const languageColor = 'rgba(175, 48, 186, 1)';
+const databaseColor = 'blue';
+const toolsColor = 'yellow'
+
 const skillbars = [
-    new Skillbar('java', '80'),
-    new Skillbar('C', '10'),
-    new Skillbar('Typescript', '65'),
-    new Skillbar('C++', '10'),
-    new Skillbar('HTML/CSS', '95')
+    new Skillbar('java', '80', languageColor),
+    new Skillbar('C', '10', languageColor),
+    new Skillbar('Typescript', '65', languageColor),
+    new Skillbar('C++', '10', languageColor),
+    new Skillbar('HTML/CSS', '95', languageColor),
+    new Skillbar('mongoDB', '100', databaseColor),
+    new Skillbar('mysql', '100', databaseColor),
+    new Skillbar('graphql', '100', databaseColor),
+    new Skillbar('figma', '100', toolsColor),
+    new Skillbar('photoshop', '100', toolsColor),
 ];
 
 const parent = document.getElementById('skillbars');
 
 
-skillbars.forEach(skill => {
-    let element = document.createElement('div');
-    let bar = document.createElement('div');
+
+
+
+const staggerElements = [];
+const distance = 3;
+
+if(skillbars.length % 2 === 1) {
+    const base = Math.round(skillbars.length / 2);
+    let step = base - 1;
+
+    skillbars.forEach((item, index) => {
+        if(index + 1 < base) {
+            staggerElements.push(step * distance);
+            step--;
+        }
+        else if(index + 1 > base) {
+            staggerElements.push(step * distance);
+            step++;
+        }
+        else {
+            staggerElements.push(0);
+            step++;
+        }
+    })
+}
+else {
+    const base1 = Math.round(skillbars.length / 2);
+    const base2 = base1 + 1;
+    let step = base1 - 1;
+
+    skillbars.forEach((item, index) => {
+        if(index + 1 < base1) {
+            staggerElements.push(step * distance);
+            step--;
+        }
+        else if(index + 1 > base2) {
+            staggerElements.push(step * distance);
+            step++;
+        }
+        else {
+            staggerElements.push(0);
+            if(index + 1 === base2) {
+                step++;
+            }
+        }
+    })
+}
+
+skillbars.forEach((skill, index) => {
+    const element = document.createElement('div');
+    const text = document.createElement('p');
 
     element.setAttribute("class", "skillbar");
+    element.style.width = (20 + staggerElements[index]) + '%';
+    console.log("color:", skill.color);
+    element.style.backgroundColor = skill.color;
 
+    text.innerText = skill.skillName;
+    text.style.color = 'white';
 
-    bar.style.height = (100 - skill.percent) + '%';
-    bar.style.width = '100%';
-    bar.style.backgroundColor = 'rgba(255, 255, 255, 1)';
-
-    element.appendChild(bar);
+    element.appendChild(text);
 
     parent.appendChild(element);
 });
+
+
+// skillbars.forEach(skill => {
+//     const element = document.createElement('div');
+//     const bar = document.createElement('div');
+//
+//     element.setAttribute("class", "skillbar");
+//
+//
+//     bar.style.height = (100 - skill.percent) + '%';
+//     bar.style.width = '100%';
+//     bar.style.backgroundColor = 'rgba(255, 255, 255, 1)';
+//
+//     element.appendChild(bar);
+//
+//     parent.appendChild(element);
+// });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

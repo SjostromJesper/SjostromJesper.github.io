@@ -143,8 +143,7 @@ canvas {
 
 #skillbars {
     display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
+    flex-direction: column;
 
     background-color: rgba(26, 32, 47, 1);
 
@@ -158,10 +157,10 @@ canvas {
     position: relative;
     top: 10%;
 
-    width: 30px;
-    height: 70%;
+    margin: 5px;
+    height: 30px;
+    width: 70%;
 
-    background-color: rgba(175, 48, 186, 1);
 }
 
 
