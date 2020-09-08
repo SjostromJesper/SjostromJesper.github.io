@@ -19,7 +19,7 @@ canvas {
     position: relative;
 }
 
-.splash {
+#splash {
     height: 100vh;
 }
 
@@ -145,9 +145,10 @@ canvas {
     display: flex;
     flex-direction: column;
 
-    background-color: rgba(26, 32, 47, 1);
+    /*background-color: rgba(26, 32, 47, 1);*/
+    background-color: rgba(224, 224, 224, 0.4);
 
-    height: 50vh;
+    height: auto;
     width: 50vw;
 
     border-radius: 15px;
@@ -160,8 +161,16 @@ canvas {
     margin: 5px;
     height: 30px;
     width: 70%;
-
 }
+
+.skillbar p {
+    margin: 0 5px;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
 
 
 

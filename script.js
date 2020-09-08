@@ -20,7 +20,7 @@ const stars = [];
 const offsetX = 100;
 const offsetY = 200;
 
-const colors = ['red', 'green', 'yellow'];
+const colors = ['red', 'rgba(175, 48, 186, 1)', 'yellow', 'rgba(4,248,255, 1)', 'rgb(255,228,128)'];
 
 function empty() {
     c.clearRect(0, 0, innerWidth, innerHeight);
@@ -51,7 +51,7 @@ function fallingStars() {
     });
 
 
-    if(Math.random() * 200 < 5 && stars.length < 25) {
+    if(Math.random() * 200 < 5 && stars.length < 50) {
         stars.push(new Starfall(-300 + (Math.random() * (innerWidth + 300)), -200, .7 + (Math.random() * 2), colors[Math.floor(Math.random() * colors.length)]));
     }
 
@@ -83,39 +83,52 @@ window.addEventListener("scroll", event => {
 // GENERATE SKILLBARS
 
 class Skillbar {
-    constructor(skillName, percent, color) {
+    constructor(skillName, color) {
         this.skillName = skillName;
-        this.percent = percent;
         this.color = color;
 
     }
+
+    createElement(index) {
+        const element = document.createElement('div');
+        const text = document.createElement('p');
+
+        element.setAttribute("class", this.skillName);
+        element.style.width = (20 + staggerElements[index]) + '%';
+        element.style.backgroundColor = this.color;
+
+        text.innerText = this.skillName;
+        text.style.color = 'black';
+        text.style.fontWeight = '600';
+
+        element.appendChild(text);
+
+        return element;
+    }
 }
 
-const languageColor = 'rgba(175, 48, 186, 1)';
-const databaseColor = 'blue';
+const languageColor = 'rgba(175, 48, 186, .8)';
+const databaseColor = 'rgba(4, 194, 201, .3)';
 const toolsColor = 'yellow'
 
 const skillbars = [
-    new Skillbar('java', '80', languageColor),
-    new Skillbar('C', '10', languageColor),
-    new Skillbar('Typescript', '65', languageColor),
-    new Skillbar('C++', '10', languageColor),
-    new Skillbar('HTML/CSS', '95', languageColor),
-    new Skillbar('mongoDB', '100', databaseColor),
-    new Skillbar('mysql', '100', databaseColor),
-    new Skillbar('graphql', '100', databaseColor),
-    new Skillbar('figma', '100', toolsColor),
-    new Skillbar('photoshop', '100', toolsColor),
+    new Skillbar('java', languageColor),
+    new Skillbar('C', languageColor),
+    new Skillbar('Typescript', languageColor),
+    new Skillbar('C++', languageColor),
+    new Skillbar('HTML/CSS', languageColor),
+    new Skillbar('rust', languageColor),
+    new Skillbar('go', languageColor),
+    new Skillbar('mongoDB', databaseColor),
+    new Skillbar('mysql', databaseColor),
+    new Skillbar('graphql', databaseColor),
+    new Skillbar('mariadb', databaseColor)
 ];
 
 const parent = document.getElementById('skillbars');
 
-
-
-
-
 const staggerElements = [];
-const distance = 3;
+const distance = 2;
 
 if(skillbars.length % 2 === 1) {
     const base = Math.round(skillbars.length / 2);
@@ -160,39 +173,8 @@ else {
 }
 
 skillbars.forEach((skill, index) => {
-    const element = document.createElement('div');
-    const text = document.createElement('p');
-
-    element.setAttribute("class", "skillbar");
-    element.style.width = (20 + staggerElements[index]) + '%';
-    console.log("color:", skill.color);
-    element.style.backgroundColor = skill.color;
-
-    text.innerText = skill.skillName;
-    text.style.color = 'white';
-
-    element.appendChild(text);
-
-    parent.appendChild(element);
+    parent.appendChild(skill.createElement(index));
 });
-
-
-// skillbars.forEach(skill => {
-//     const element = document.createElement('div');
-//     const bar = document.createElement('div');
-//
-//     element.setAttribute("class", "skillbar");
-//
-//
-//     bar.style.height = (100 - skill.percent) + '%';
-//     bar.style.width = '100%';
-//     bar.style.backgroundColor = 'rgba(255, 255, 255, 1)';
-//
-//     element.appendChild(bar);
-//
-//     parent.appendChild(element);
-// });
-
 
 
 
