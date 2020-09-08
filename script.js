@@ -176,16 +176,21 @@ skillbars.forEach((skill, index) => {
     parent.appendChild(skill.createElement(index));
 });
 
+const scrollElement = document.querySelector("body");
 
 
+scrollElement.addEventListener('scroll', function (e) {
+    const nav = document.querySelector('.nav');
+    if (e.path[0].scrollTop >= canvas.height - 20) {
+        nav.classList.add('nav-colored');
+        nav.classList.remove('nav-splash');
 
-
-
-
-
-
-
-
+        console.log(canvas.height)
+    } else {
+        nav.classList.remove('nav-colored');
+        nav.classList.add('nav-splash')
+    }
+}, false);
 
 
 

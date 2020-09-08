@@ -30,9 +30,11 @@ canvas {
     right: 30px;
     z-index: 1;
 
-    color: rgba(255, 255, 255, 0.4);
     font-weight: 100;
+}
 
+.nav-splash {
+    color: rgba(255, 255, 255, 0.4);
 }
 
 .nav p {
@@ -50,10 +52,9 @@ canvas {
         border-bottom: rgba(255, 230, 0, 1) solid 1px;
         color: rgba(255, 255, 255, 1);
     }
-
 }
 
-.nav p:hover {
+.nav-splash p:hover {
     animation: fadein 1s forwards;
     animation-timing-function: ease-out;
 }
@@ -171,6 +172,19 @@ canvas {
     transform: translateY(-50%);
 }
 
+.nav-colored p {
+    color: black;
+}
 
+.nav-colored p:hover {
+    animation: fadeinBlack 1s forwards;
+}
 
-
+@keyframes fadeinBlack {
+    from {
+        border-bottom: rgba(255, 230, 0, 0) solid 1px;
+    }
+    to {
+        border-bottom: rgba(0, 0, 0, 1) solid 1px;
+    }
+}
