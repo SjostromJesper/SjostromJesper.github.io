@@ -94,7 +94,8 @@ class Skillbar {
         const text = document.createElement('p');
 
         element.setAttribute("class", this.skillName);
-        element.style.width = (20 + staggerElements[index]) + '%';
+        element.style.marginLeft = (5 + staggerElements[index]) + '%';
+        element.style.width = '200px';
         element.style.backgroundColor = this.color;
 
         text.innerText = this.skillName;
