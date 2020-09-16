@@ -37,7 +37,7 @@ function fallingStars() {
         star.startX += star.speed * offsetX / 100;
         star.startY +=  star.speed * offsetY / 100;
 
-        if(star.startY > innerWidth) {
+        if(star.startY > canvas.height) {
             stars.splice(index, 1);
         }
 
@@ -75,56 +75,33 @@ addEventListener('keydown', event => {
     }
 });
 
-window.addEventListener("scroll", event => {
-    console.log("scrolling");
-}, {passive: true});
-
-
 // GENERATE SKILLBARS
 
-class Skillbar {
-    constructor(skillName, color) {
-        this.skillName = skillName;
-        this.color = color;
+const languageColor = 'rgba(175, 48, 186, .8)';
 
+class Skillbar {
+    constructor() {
+        this.color = 'rgba(175, 48, 186, .8)';
     }
 
     createElement(index) {
         const element = document.createElement('div');
-        const text = document.createElement('p');
-
-        element.setAttribute("class", this.skillName);
         element.style.marginLeft = (5 + staggerElements[index]) + '%';
         element.style.width = '200px';
         element.style.backgroundColor = this.color;
-
-        text.innerText = this.skillName;
-        text.style.color = 'black';
-        text.style.fontWeight = '600';
-
-        element.appendChild(text);
 
         return element;
     }
 }
 
-const languageColor = 'rgba(175, 48, 186, .8)';
-const databaseColor = 'rgba(4, 194, 201, .3)';
-const toolsColor = 'yellow'
 
-const skillbars = [
-    new Skillbar('java', languageColor),
-    new Skillbar('C', languageColor),
-    new Skillbar('Typescript', languageColor),
-    new Skillbar('C++', languageColor),
-    new Skillbar('HTML/CSS', languageColor),
-    new Skillbar('rust', languageColor),
-    new Skillbar('go', languageColor),
-    new Skillbar('mongoDB', databaseColor),
-    new Skillbar('mysql', databaseColor),
-    new Skillbar('graphql', databaseColor),
-    new Skillbar('mariadb', databaseColor)
-];
+const databaseColor = 'rgba(4, 194, 201, .3)';
+const skillbars = [];
+
+for(let i = 0 ;  i < 10 ; i++) {
+    skillbars.push(new Skillbar());
+}
+
 
 const parent = document.getElementById('skillbars');
 
@@ -182,11 +159,12 @@ const scrollElement = document.querySelector("body");
 
 scrollElement.addEventListener('scroll', function (e) {
     const nav = document.querySelector('.nav');
-    if (e.path[0].scrollTop >= canvas.height - 20) {
+
+    console.log(e);
+
+    if (e.target.scrollTop >= canvas.height - 20) {
         nav.classList.add('nav-colored');
         nav.classList.remove('nav-splash');
-
-        console.log(canvas.height)
     } else {
         nav.classList.remove('nav-colored');
         nav.classList.add('nav-splash')
@@ -200,7 +178,16 @@ scrollElement.addEventListener('scroll', function (e) {
 
 
 
+const contactFirstName = document.getElementById("fname");
+const contactLastName = document.getElementById("lname");
+const contactEmail = document.getElementById("email");
+const contactMessage = document.getElementById("question");
 
+function sendContact() {
+    if(contactFirstName.value.length > 0 && contactMessage.value.length > 0) {
+        console.log(contactFirstName.value, contactLastName.value, contactEmail.value, contactMessage.value);
+    }
+}
 
 
 

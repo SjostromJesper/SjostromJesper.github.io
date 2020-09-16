@@ -90,8 +90,6 @@ canvas {
 
 
 .title {
-    animation-name: fap;
-    animation-delay: 4s;
 
     position: relative;
     bottom: 300px;

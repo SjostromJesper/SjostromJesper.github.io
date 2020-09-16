@@ -20,7 +20,7 @@
 
         <div class="nav nav-splash">
             <a href=""><p>home</p></a>
-            <a href=""><p>about</p></a>
+            <a href=""><p>info</p></a>
             <a href=""><p>contact</p></a>
         </div>
 
@@ -40,9 +40,24 @@
 
 
     <div id="info">
-        <div id="skillbars">
+        <div id="skillbars"></div>
+    </div>
 
-        </div>
+    <div id="contact">
+        <div></div>
+        <div></div>
+
+
+        <h2>contact me for inquiries</h2>
+
+        <form action="" onsubmit="return false">
+            <input type="text" placeholder="Enter your first first" id="fname">
+            <input type="text" placeholder="Enter your last name" id="lname">
+            <input type="email" placeholder="Enter your Email" id="email">
+            <textarea id="question" rows="6"></textarea>
+
+            <button onclick="sendContact()">Send</button>
+        </form>
     </div>
 </div>
 
