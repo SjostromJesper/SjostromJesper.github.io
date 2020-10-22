@@ -9,6 +9,7 @@ html, body, .animation-frame {
     font-family: 'Roboto', sans-serif;
 
     scroll-behavior: smooth;
+    scrollbar-width: none;
 }
 
 .animation-frame {

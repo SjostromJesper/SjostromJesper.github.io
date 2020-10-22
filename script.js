@@ -75,87 +75,15 @@ addEventListener('keydown', event => {
     }
 });
 
-// GENERATE SKILLBARS
-
-const languageColor = 'rgba(175, 48, 186, .8)';
-
-class Skillbar {
-    constructor() {
-        this.color = 'rgba(175, 48, 186, .8)';
-    }
-
-    createElement(index) {
-        const element = document.createElement('div');
-        element.style.marginLeft = (5 + staggerElements[index]) + '%';
-        element.style.width = '200px';
-        element.style.backgroundColor = this.color;
-
-        return element;
-    }
-}
-
-
-const databaseColor = 'rgba(4, 194, 201, .3)';
-const skillbars = [];
-
-for(let i = 0 ;  i < 10 ; i++) {
-    skillbars.push(new Skillbar());
-}
-
-
-const parent = document.getElementById('skillbars');
-
-const staggerElements = [];
-const distance = 2;
-
-if(skillbars.length % 2 === 1) {
-    const base = Math.round(skillbars.length / 2);
-    let step = base - 1;
-
-    skillbars.forEach((item, index) => {
-        if(index + 1 < base) {
-            staggerElements.push(step * distance);
-            step--;
-        }
-        else if(index + 1 > base) {
-            staggerElements.push(step * distance);
-            step++;
-        }
-        else {
-            staggerElements.push(0);
-            step++;
-        }
-    })
-}
-else {
-    const base1 = Math.round(skillbars.length / 2);
-    const base2 = base1 + 1;
-    let step = base1 - 1;
-
-    skillbars.forEach((item, index) => {
-        if(index + 1 < base1) {
-            staggerElements.push(step * distance);
-            step--;
-        }
-        else if(index + 1 > base2) {
-            staggerElements.push(step * distance);
-            step++;
-        }
-        else {
-            staggerElements.push(0);
-            if(index + 1 === base2) {
-                step++;
-            }
-        }
-    })
-}
-
-skillbars.forEach((skill, index) => {
-    parent.appendChild(skill.createElement(index));
+window.addEventListener('resize', event => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 });
 
-const scrollElement = document.querySelector("body");
 
+
+
+const scrollElement = document.querySelector("body");
 
 scrollElement.addEventListener('scroll', function (e) {
     const nav = document.querySelector('.nav');
